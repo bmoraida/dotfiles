@@ -1,59 +1,124 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+let mapleader =" "
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Put plugins between begin and end calls
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/goyo.vim'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'morhetz/gruvbox'
+Plug 'mattn/emmet-vim'
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+call plug#end()
 
-" add plugins here 
-Plugin 'othree/html5-syntax.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'mattn/emmet-vim'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'alvan/vim-closetag'
-Plugin 'scrooloose/nerdtree'
-Plugin 'bling/vim-airline'
+" Some Basics-----------------------
 
+" Don't try to be vi compatible
+set nocompatible
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
+" Helps force plugins to load correctly when it is turned back on below
+filetype off
 
-" Put your non-Plugin stuff after this line" Indent Options
-set autoindent
-set expandtab
-set tabstop=2
+" Turn on syntax highlighting
+syntax on
 
-" Search Options
-set hlsearch
-set ignorecase
+" Allow hidden buffers
+set hidden
 
-" Text rendering options
-syntax enable
+" Rendering
+set ttyfast
+
+" Always utf-8
+set encoding=utf-8
+
+" For plugins to load correctly
+filetype plugin indent on
+
+" Security
+set modelines=0
+
+" Show line numbers
+set number relativenumber
+
+" Enable autocomplete
+set wildmode=longest,list,full
+
+" Disable automatic commenting
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Show file stats
+set ruler
+
+" Blink cursor on error instead of beeping (grr)
+set visualbell
+
+" End Basics -----------------
+
+" Whitespace
 set wrap
-set linebreak
-
-" User interface options
-colorscheme molokai
-set relativenumber
-set title
-
-" Set indent to 2
+set textwidth=79
+set formatoptions=tcqrn1
+set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set tabstop=2
+set expandtab
+set noshiftround
+
+" Cursor motion
+set scrolloff=3
+set backspace=indent,eol,start
+set matchpairs+=<:> " use % to jump between pairs
+runtime! macros/matchit.vim
+
+" Splits open at the bottom and the right
+set splitbelow splitright
+
+" Shortcutting split navigation i3 style
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Move up/down editor lines
+nnoremap j gj
+nnoremap k gk
+
+" Status bar
+set laststatus=2
+
+" Last line
+set showmode
+set showcmd
+
+" Searching
+nnoremap / /\v
+vnoremap / /\v
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set showmatch
+map <leader><space> :let @/=''<cr> " clear search
+
+" Remap help key.
+inoremap <F1> <ESC>:set invfullscreen<CR>a
+nnoremap <F1> :set invfullscreen<CR>
+vnoremap <F1> :set invfullscreen<CR>
+
+" Textmate holdouts
+
+" Formatting
+map <leader>q gqip
+
+" Visualize tabs and newlines
+set listchars=tab:▸\ ,eol:¬
+" Uncomment this to enable by default:
+" set list " To enable by default
+" Or use your leader key + l to toggle on/off
+map <leader>l :set list!<CR> " Toggle tabs and EOL
+
+map <leader>f :Goyo \| set linebreak<CR>
+
+" Color scheme (terminal)
+set t_Co=256
+set background=dark
+colorscheme gruvbox
+
