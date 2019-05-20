@@ -1,0 +1,14 @@
+#!/bin/sh
+
+alias mkd="mkdir -pv" \
+c="clear" \
+e="nvim" \
+p="sudo pacman" \
+vim="nvim" \
+vi3="vim ~/.config/i3/config" \
+vpoly="vim ~/.congig/polybar/config" \
+valias="vim ~/.config/aliasrc" \
+vpoly="vim ~/.config/polybar/config" \
+ls="ls -hN --color=auto --group-directories-first" \
+grep="grep --color=auto" \
+i3exit="~/.scripts/i3cmds/i3exit.sh" \
