@@ -1,6 +1,0 @@
-~/.bashrc
-~/.config/aliasrc
-~/.config/ranger/rc.conf
-~/.config/i3/config
-~/.congig/compton.config
-~/.config/polybar/config
